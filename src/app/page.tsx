@@ -1,12 +1,20 @@
 import Hero from "@/components/home/Hero";
+import Features from "@/components/home/Features";
 import PopularDestinations from "@/components/home/PopularDestinations";
+import Testimonials from "@/components/home/Testimonials";
+import FAQ from "@/components/home/FAQ";
+import CTA from "@/components/home/CTA";
 
 
 export default function Home() {
   return (
-      <section>
+      <main>
         <Hero />
         <PopularDestinations />
-      </section>
+        <Features />
+        <Testimonials />
+        <FAQ />
+        <CTA />
+      </main>
   );
 }
