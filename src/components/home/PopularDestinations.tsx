@@ -59,8 +59,7 @@ export default function PopularDestinations() {
   }, []);
 
   return (
-    <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4">
+      <section className="max-w-7xl mx-auto py-16 px-4">
 
         {/* Title */}
         <h2 className="text-3xl font-bold mb-8">
@@ -78,7 +77,6 @@ export default function PopularDestinations() {
                 <DestinationCard key={item.id} {...item} />
               ))}
         </div>
-      </div>
-    </section>
+      </section>
   );
 }

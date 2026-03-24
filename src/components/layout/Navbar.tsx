@@ -42,7 +42,7 @@ export default function Navbar() {
               href={item.path}
               className={`relative group transition ${
                 isActive(item.path)
-                  ? "text-blue-600"
+                  ? "text-orange-500"
                   : "text-gray-700 dark:text-gray-300"
               }`}
             >
@@ -50,7 +50,7 @@ export default function Navbar() {
 
               {/* underline */}
               <span
-                className={`absolute left-0 -bottom-1 h-[2px] bg-blue-600 transition-all duration-300
+                className={`absolute left-0 -bottom-1 h-[2px] bg-orange-500 transition-all duration-300
                 ${isActive(item.path) ? "w-full" : "w-0 group-hover:w-full"}`}
               />
             </Link>
@@ -98,7 +98,7 @@ export default function Navbar() {
           {/* AI Button */}
           <Link
             href="/explore"
-            className="px-5 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold shadow-md hover:scale-105 hover:shadow-lg transition"
+            className="px-5 py-2 rounded-full bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold shadow-md hover:scale-105 hover:shadow-lg transition"
           >
             ✨ AI Planner
           </Link>
@@ -169,7 +169,7 @@ export default function Navbar() {
 
               <Link
                 href="/login"
-                className="mt-2 text-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-full"
+                className="mt-2 text-center bg-gradient-to-r from-orange-500 to-orange-600 text-white py-2 rounded-full"
               >
                 Login
               </Link>
