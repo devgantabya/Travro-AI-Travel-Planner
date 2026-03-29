@@ -99,7 +99,7 @@ export default function SignupPage() {
         {/* Social Login */}
         <button className="w-full flex items-center justify-center gap-2 mt-2 bg-red-500 hover:bg-red-600 active:scale-95 text-white py-3 rounded-xl font-medium transition">
   <Image
-    src="/icons/google.svg"
+    src="/icons/google-icon.png"
     alt="Google"
     width={20}
     height={20}

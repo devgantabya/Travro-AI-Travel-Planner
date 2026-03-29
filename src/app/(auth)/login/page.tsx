@@ -2,23 +2,39 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import useAuth from "@/hooks/useAuth";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const { signInUser } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = () => {
-    if (!email || !password) {
-      alert("Please fill all fields");
-      return;
-    }
+  const redirectTo = searchParams.get("redirectTo") || "/dashboard";
 
-    alert("Login success (demo)");
+  const handleLogin = async () => {
+    try {
+      await signInUser(email, password);
+      alert("Login successful! Redirecting...");
+      router.push(redirectTo);
+    } catch (error: any) {
+      console.error(error);
+      alert("Login failed: " + error.message);
+    }
   };
 
-  const demoLogin = () => {
-    setEmail("user@example.com");
-    setPassword("123456");
+  const demoLogin = async () => {
+    try {
+      await signInUser("user@example.com", "123456");
+      router.push("/dashboard");
+    } catch (error: any) {
+      console.error(error);
+    }
   };
 
   return (
@@ -29,7 +45,6 @@ export default function LoginPage() {
           Welcome Back
         </h2>
 
-        {/* Email Input */}
         <input
           type="email"
           placeholder="Email"
@@ -39,7 +54,6 @@ export default function LoginPage() {
                      focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
         />
 
-        {/* Password Input */}
         <input
           type="password"
           placeholder="Password"
@@ -49,7 +63,6 @@ export default function LoginPage() {
                      focus:outline-none focus:ring-2 focus:ring-orange-500 transition"
         />
 
-        {/* Login Button */}
         <button
           onClick={handleLogin}
           className="w-full bg-orange-500 hover:bg-orange-600 active:scale-95 text-white py-3 rounded-xl font-medium transition"
@@ -57,7 +70,6 @@ export default function LoginPage() {
           Login
         </button>
 
-        {/* Demo Login */}
         <button
           onClick={demoLogin}
           className="w-full mt-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-white py-3 rounded-xl font-medium transition"
@@ -65,30 +77,27 @@ export default function LoginPage() {
           Demo Login
         </button>
 
-        {/* Divider */}
         <div className="flex items-center my-4">
           <span className="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
           <span className="px-3 text-gray-400">or</span>
           <span className="flex-grow h-px bg-gray-300 dark:bg-gray-600" />
         </div>
 
-        {/* Social Login */}
         <button className="w-full flex items-center justify-center gap-2 mt-2 bg-red-500 hover:bg-red-600 active:scale-95 text-white py-3 rounded-xl font-medium transition">
-  <Image
-    src="/icons/google.svg"
-    alt="Google"
-    width={20}
-    height={20}
-  />
-  Continue with Google
-</button>
+          <Image
+            src="/icons/google-icon.png"
+            alt="Google"
+            width={20}
+            height={20}
+          />
+          Continue with Google
+        </button>
 
-        {/* Footer */}
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">
           Do not have an account?{" "}
-          <a href="/signup" className="text-orange-500 hover:underline">
+          <Link href="/signup" className="text-orange-500 hover:underline">
             Sign Up
-          </a>
+          </Link>
         </p>
       </div>
     </div>

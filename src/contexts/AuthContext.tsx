@@ -1,13 +1,17 @@
 "use client";
 
 import { createContext } from "react";
-import { UserCredential } from "firebase/auth";
+import { User, UserCredential } from "firebase/auth";
 
-// Define the context type
 export interface AuthContextType {
   signInWithGoogle: () => Promise<UserCredential | void>;
+  registerUser: (email: string, password: string) => Promise<UserCredential>;
+  signInUser: (email: string, password: string) => Promise<UserCredential>;
+  logout: () => Promise<void>;
+  user: User | null;
   loading: boolean;
 }
 
-// Properly type the context
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType>(
+  {} as AuthContextType
+);
