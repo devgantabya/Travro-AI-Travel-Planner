@@ -10,7 +10,7 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
-    const { user, signOutUser } = useAuth();
+    const { user, logout } = useAuth();
     const router = useRouter();
 
     useEffect(() => {
@@ -35,10 +35,10 @@ const useAxiosSecure = () => {
 
                 if (statusCode === 401 || statusCode === 403) {
                     try {
-                        await signOutUser();
+                        await logout();
                         router.push("/login");
-                    } catch (signOutError) {
-                        console.error("Error signing out:", signOutError);
+                    } catch (logoutError) {
+                        console.error("Error signing out:", logoutError);
                     }
                 }
 
@@ -50,7 +50,7 @@ const useAxiosSecure = () => {
             axiosSecure.interceptors.request.eject(reqInterceptor);
             axiosSecure.interceptors.response.eject(resInterceptor);
         };
-    }, [user, signOutUser, router]);
+    }, [user, logout, router]);
 
     return axiosSecure;
 };
